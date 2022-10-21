@@ -7,12 +7,15 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn import svm
 from sklearn.metrics import accuracy_score
+from django.contrib.staticfiles.storage import staticfiles_storage
+
 # Create your views here.
 def predict(request):
     return render(request,'predict.html')
 
 def results(request):
-    diabetes_dataset = pd.read_csv(r'static\diabetes.csv') 
+    url = staticfiles_storage.url('data/foobar.csv')
+    diabetes_dataset = pd.read_csv(url) 
     X = diabetes_dataset.drop(columns = 'Outcome', axis=1)
     Y = diabetes_dataset['Outcome']
     scaler = StandardScaler()
