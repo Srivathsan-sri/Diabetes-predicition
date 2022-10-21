@@ -14,7 +14,7 @@ def predict(request):
     return render(request,'predict.html')
 
 def results(request):
-    url = staticfiles_storage.url('diabetes.csv')
+    url = staticfiles_storage.path('diabetes.csv')
     diabetes_dataset = pd.read_csv(url) 
     X = diabetes_dataset.drop(columns = 'Outcome', axis=1)
     Y = diabetes_dataset['Outcome']
